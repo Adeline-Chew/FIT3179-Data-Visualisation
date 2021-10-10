@@ -1,0 +1,78 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Adeline-Chew/FIT3179-Data-Visualisation/main/data/production.csv"
+    },
+    "transform": [
+        {
+            "filter": "Country_Selection == null || datum.Country == Country_Selection"
+        },
+        {
+            "calculate": "datum.Wine production in mhl",
+            "as": "Wine production in mhl"
+        }
+    ],
+    "width": 20,
+    "height": 450,
+    "params": [
+        {
+            "name": "Wine Production by Country",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "Italy",
+                    "France",
+                    "Spain",
+                    "United States",
+                    "Australia",
+                    "China",
+                    "South Africa",
+                    "Chile"
+                ],
+                "labels": [
+                    "Italy",
+                    "France",
+                    "Spain",
+                    "United States",
+                    "Australia",
+                    "China",
+                    "South Africa",
+                    "Chile"
+                ],
+                "name": "Country Selection:"
+            }
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "column": {
+            "field": "Year",
+            "type": "ordinal",
+            "sort": ["2012", "2013", "2014", "2015", "2016"],
+            "title": "Year"
+        },
+        "y": {
+            "field": "Wine production in mhl",
+            "title": "Total Production in mhl",
+            "type": "quantitative"
+        },
+
+        "color": {
+            "field": "Status",
+            "scale": { "range": ["#ff0026", "#0015ff"] },
+            "legend": null
+        },
+        "tooltip": [
+            {
+                "field": "Wine production in mhl",
+                "type": "quantitative",
+                "title": "Monthly Average"
+            },
+            { "field": "Status" }
+        ]
+    },
+    "config": {
+        "view": { "stroke": "transparent" },
+        "axis": { "domainWidth": 1 }
+    }
+}
