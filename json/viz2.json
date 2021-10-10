@@ -5,7 +5,7 @@
     "title": "Wine Production across countries",
     "params": [
         {
-            "name": "Year",
+            "name": "Year_Selection",
             "value": 2016,
             "bind": {
                 "input": "range",
