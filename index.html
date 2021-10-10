@@ -18,55 +18,28 @@
 </head>
 
 <body>
-    <h1>Alcohol Comsumption Around the World</h1>
     <!-- Container for the visualization -->
-    <div id="vis"></div>
-
+    <div>
+        <section>
+            <div class="container">
+                <h2>Alcohol Comsumption Around the World</h2>
+                <div id="viz1"></div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Wine Production across Countries</h2>
+                <div id="viz2"></div>
+            </div>
+        </section>
+    </div>
     <script>
-        // Assign the specification to a local variable vlSpec.
-        var vlSpec = {
-            "$schema": 'https://vega.github.io/schema/vega-lite/v5.json',
-            "width": 1000,
-            "height": 800,
-            "data": {
-                "url": "https://raw.githubusercontent.com/Adeline-Chew/FIT3179-Data-Visualisation/main/json/world-topo.json?token=ANNBSTY5JYBJLYYSJQ563WLBKYBGA",
-                "format": { "type": "topojson", "feature": "world" }
-            },
-            "transform": [
-                {
-                    "lookup": "properties.name",
-                    "from": {
-                        "data": {
-                            "url": "https://raw.githubusercontent.com/Adeline-Chew/FIT3179-Data-Visualisation/main/data/drinks.csv"
-                        },
-                        "key": "Country",
-                        "fields": ["Total"]
-                    }
-                },
 
-                { "calculate": "datum.Total + 1", "as": "Total Consumption" }],
-            "mark": { "type": "geoshape" },
-            "encoding": {
-                "color": {
-                    "field": "Total Consumption",
-                    "type": "quantitative",
-                    "scale": {
-                        "type": "linear",
-                        "domain": [0, 2, 4, 6, 8, 10, 12, 14],
-                        "range": ["#80ed99", "#62be8f", "#58af8c", "#50a289", "#408984", "#367881", "#2b667d", "#22577a"]
-                    }
-                },
-                "projection": {
-                    "type": "equirectangular"
-                },
-                "tooltip": [
-                    { "field": "properties.name", "type": "nominal", "title": "Country" },
-                    { "field": "Total", "type": "quantitative" }]
-            }
-        }
-
+        var spec1 = "https://raw.githubusercontent.com/Adeline-Chew/FIT3179-Data-Visualisation/main/json/viz1.json"
+        var spec2 = "https://raw.githubusercontent.com/Adeline-Chew/FIT3179-Data-Visualisation/main/json/viz2.json"
         // Embed the visualization in the container with id `vis`
-        vegaEmbed('#vis', vlSpec);
+        vegaEmbed('#viz1', spec1);
+        vegaEmbed('#viz2', spec2);
     </script>
 </body>
 
